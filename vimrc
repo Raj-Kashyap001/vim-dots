@@ -1,6 +1,7 @@
 " ============================================================================
 " BASIC SETTINGS
 " ============================================================================
+
 set number
 set relativenumber
 set mouse=a
@@ -372,4 +373,48 @@ endif
 
 
 
+if has("gui_running")
+  set guioptions-=T   "remove toolbar
+  set guioptions-=L   "remove left scrollbar
+
+  set guifont=JetBrainsMono\ Nerd\ Font\ 15
+  set guioptions-=m    "remove menu bar 
+
+  syntax enable
+  colorscheme github_dark 
+
+  function! StatuslineMode()
+  let l:mode = mode()
+
+  if l:mode ==# 'n'
+    hi StatusLineMode guifg=#0d1117 guibg=#2ea043 gui=bold
+    return 'NORMAL'
+  elseif l:mode ==# 'i'
+    hi StatusLineMode guifg=#0d1117 guibg=#58a6ff gui=bold
+    return 'INSERT'
+  elseif l:mode ==# 'v' || l:mode ==# 'V' || l:mode ==# "\<C-v>"
+    hi StatusLineMode guifg=#0d1117 guibg=#a371f7 gui=bold
+    return 'VISUAL'
+  elseif l:mode ==# 'R'
+    hi StatusLineMode guifg=#0d1117 guibg=#f85149 gui=bold
+    return 'REPLACE'
+  elseif l:mode ==# 'c'
+    hi StatusLineMode guifg=#0d1117 guibg=#d29922 gui=bold
+    return 'COMMAND'
+  else
+    return l:mode
+  endif
+endfunction
+
+hi StatusLine        guifg=#c9d1d9 guibg=#161b22 gui=NONE
+hi StatusLineNC      guifg=#8b949e guibg=#0d1117 gui=NONE
+hi VertSplit         guifg=#30363d guibg=#0d1117
+
+hi StatusLineExtra   guifg=#8b949e guibg=#161b22
+hi StatusLinePosition guifg=#c9d1d9 guibg=#161b22 gui=bold
+
+hi LineNr        guifg=#6e7681 guibg=NONE
+hi CursorLineNr guifg=#c9d1d9 guibg=NONE gui=bold
+
+endif
 
