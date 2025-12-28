@@ -60,6 +60,11 @@ if &shell =~# 'fish$'
   set shell=/bin/bash
 endif
 
+" Omni function autocomplete
+augroup omnifunc_setup
+  autocmd!
+  autocmd FileType * setlocal omnifunc=syntaxcomplete#Complete
+augroup END
 " ============================================================================
 " LEADER KEY
 " ============================================================================
