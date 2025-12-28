@@ -342,43 +342,12 @@ nnoremap <leader>sh <C-w>K
 
 nnoremap <leader>sv <C-w>H
 
-" ============================================================================
-" LSP (Built-in Vim 9.0+)
-" ============================================================================
-if has('lsp')
-
-  " Source LSP server configuration if it exists
-  if filereadable(expand('~/.vim/lsp.vim'))
-    source ~/.vim/lsp.vim
-  endif
-
-  " LSP Keybindings
-  augroup lsp_keys
-    autocmd!
-    autocmd FileType javascript,typescript,javascriptreact,typescriptreact,python,html,css,scss,json,vim,sh,bash,c,cpp nnoremap <buffer> gd :LspGotoDefinition<CR>
-    autocmd FileType javascript,typescript,javascriptreact,typescriptreact,python,html,css,scss,json,vim,sh,bash,c,cpp nnoremap <buffer> gr :LspShowReferences<CR>
-    autocmd FileType javascript,typescript,javascriptreact,typescriptreact,python,html,css,scss,json,vim,sh,bash,c,cpp nnoremap <buffer> K :LspHover<CR>
-    autocmd FileType javascript,typescript,javascriptreact,typescriptreact,python,html,css,scss,json,vim,sh,bash,c,cpp nnoremap <buffer> <leader>rn :LspRename<CR>
-    autocmd FileType javascript,typescript,javascriptreact,typescriptreact,python,html,css,scss,json,vim,sh,bash,c,cpp nnoremap <buffer> [d :LspDiag prev<CR>
-    autocmd FileType javascript,typescript,javascriptreact,typescriptreact,python,html,css,scss,json,vim,sh,bash,c,cpp nnoremap <buffer> ]d :LspDiag next<CR>
-    autocmd FileType javascript,typescript,javascriptreact,typescriptreact,python,html,css,scss,json,vim,sh,bash,c,cpp nnoremap <buffer> <leader>ca :LspCodeAction<CR>
-  augroup END
-
-  " LSP Options
-  let g:lsp_diagnostics_enabled = 1
-  let g:lsp_diagnostics_echo_cursor = 1
-  let g:lsp_diagnostics_virtual_text_enabled = 1
-  let g:lsp_inlay_hints_enabled = 1
-endif
-
-
-
 if has("gui_running")
   set guioptions-=T   "remove toolbar
   set guioptions-=L   "remove left scrollbar
 
   set guifont=JetBrainsMono\ Nerd\ Font\ 15
-  set guioptions-=m    "remove menu bar 
+  " set guioptions-=m    "remove menu bar 
 
   syntax enable
   colorscheme github_dark 
@@ -417,4 +386,5 @@ hi LineNr        guifg=#6e7681 guibg=NONE
 hi CursorLineNr guifg=#c9d1d9 guibg=NONE gui=bold
 
 endif
+
 
