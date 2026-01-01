@@ -11,12 +11,22 @@ let g:netrw_banner    = 0
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_hide      = 1
 
+
+set ttimeout
+set ttimeoutlen=10
+set timeoutlen=300
+
+" Cursor shape 
+let &t_SI = "\e[6 q"   " insert: bar
+let &t_SR = "\e[4 q"   " replace: underline
+let &t_EI = "\e[2 q"   " normal: block
+
 filetype plugin indent on
 syntax on
-
 set wildmenu
 set autoindent
 set expandtab
+set backupcopy=yes
 set softtabstop=2
 set shiftwidth=2
 set shiftround
@@ -41,13 +51,7 @@ set report=0
 set synmaxcol=200
 set list
 
-let &t_SI = "\e[6 q"           " Insert mode → vertical bar
-let &t_SR = "\e[4 q"           " Replace mode → underline
-let &t_EI = "\e[2 q"           " Normal mode (and others) → block
-let &t_SI = "\e[5 q"           " blinking vertical bar
-let &t_EI = "\e[1 q"           " blinking block
-
-
+colorscheme github_dark 
 
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
@@ -355,7 +359,6 @@ if has("gui_running")
   " set guioptions-=m    "remove menu bar 
 
   syntax enable
-  colorscheme github_dark 
 
   function! StatuslineMode()
   let l:mode = mode()
@@ -390,6 +393,21 @@ hi StatusLinePosition guifg=#c9d1d9 guibg=#161b22 gui=bold
 hi LineNr        guifg=#6e7681 guibg=NONE
 hi CursorLineNr guifg=#c9d1d9 guibg=NONE gui=bold
 
+endif
+
+" Set Transparent BG only on non gui mode
+hi Normal guibg=NONE ctermbg=NONE
+
+
+if has("gui_running")
+  syntax enable
+  set guioptions-=T   "remove toolbar
+  set guioptions-=L   "remove left scrollbar
+
+  set guifont=JetBrainsMono\ Nerd\ Font\ 15
+  set guioptions-=m    "remove menu bar
+
+  hi Normal guibg=#242424 ctermbg=NONE
 endif
 
 
